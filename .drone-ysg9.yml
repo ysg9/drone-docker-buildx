@@ -17,13 +17,12 @@ steps:
   - build
 
 - name: create-image
-  image: %%{DroneDockerImage}:20220215
-  #image: %%{NcicdDockerRepo}/cicd/drone-docker:20220215
+  image: %%{DroneDockerImage}
   settings:
     repo: %%{NcicdDockerRepo}/cicd/drone-docker-buildx
     dockerfile: Dockerfile.ysg9
     tags:
-    - test
+    - latest
   depends_on:
   - scan
 
