@@ -1,0 +1,11 @@
+FROM docker/buildx-bin:0.7.1 AS buildx
+
+FROM docker:20.10-dind
+
+ENV DOCKER_HOST=unix:///var/run/docker.sock
+COPY release/linux/amd64/drone-docker-buildx /bin/
+
+RUN mkdir -p /usr/lib/docker/cli-plugins
+COPY --from=buildx /usr/local/bin/buildx /usr/lib/docker/cli-plugins/docker-buildx
+
+ENTRYPOINT ["/usr/local/bin/dockerd-entrypoint.sh", "/bin/drone-docker-buildx"]
