@@ -41,7 +41,7 @@ func settingsFlags(settings *plugin.Settings) []cli.Flag {
 		},
 		&cli.StringFlag{
 			Name:        "daemon.bip",
-			EnvVars:     []string{"PLUGIN_BIP"},
+			EnvVars:     []string{"PLUGIN_BIP", "DOCKER_PLUGIN_BIP"},
 			Usage:       "allows the docker daemon to bride ip address",
 			Destination: &settings.Daemon.Bip,
 		},
@@ -53,13 +53,13 @@ func settingsFlags(settings *plugin.Settings) []cli.Flag {
 		},
 		&cli.StringSliceFlag{
 			Name:        "daemon.dns",
-			EnvVars:     []string{"PLUGIN_CUSTOM_DNS"},
+			EnvVars:     []string{"PLUGIN_CUSTOM_DNS", "DOCKER_PLUGIN_CUSTOM_DNS"},
 			Usage:       "sets custom docker daemon dns server",
 			Destination: &settings.Daemon.DNS,
 		},
 		&cli.StringSliceFlag{
 			Name:        "daemon.dns-search",
-			EnvVars:     []string{"PLUGIN_CUSTOM_DNS_SEARCH"},
+			EnvVars:     []string{"PLUGIN_CUSTOM_DNS_SEARCH", "DOCKER_PLUGIN_CUSTOM_DNS_SEARCH"},
 			Usage:       "sets custom docker daemon dns search domain",
 			Destination: &settings.Daemon.DNSSearch,
 		},
@@ -214,7 +214,7 @@ func settingsFlags(settings *plugin.Settings) []cli.Flag {
 		},
 		&cli.StringFlag{
 			Name:        "docker.config",
-			EnvVars:     []string{"PLUGIN_CONFIG", "DOCKER_PLUGIN_CONFIG"},
+			EnvVars:     []string{"PLUGIN_CONFIG", "DOCKER_PLUGIN_CONFIG", "DOCKER_AUTHCONFIG", "DOCKER_PLUGIN_AUTHCONFIG"},
 			Usage:       "sets content of the docker daemon json config",
 			Destination: &settings.Login.Config,
 		},
